@@ -1,1 +1,110 @@
 
+ JavaScript Fullstack – Python OOP Concepts (Day 5 Remaining)
+📦 1. Class and Data Access Control
+A class is used to organize and secure data using objects.
+
+By default, Python allows public access to attributes.
+
+To restrict access, we use the concept of private variables.
+
+🔐 2. Public vs Private in OOP
+Modifier	Access Level	Python Support
+public	Accessible from outside	✅ Default
+private	Only accessible inside the class	🚫 Not via keyword, but by convention (__var)
+
+Why private?
+
+Prevents external code from directly modifying sensitive data like phone numbers or names.
+
+Improves security and maintainability.
+
+🧰 3. Accessing Private Data – Getter and Setter Functions
+Private data cannot be accessed directly from outside.
+
+So we use getter and setter functions:
+
+python
+Copy
+Edit
+class Visitor:
+    def getName(self):
+        return self.__name
+
+    def setName(self, new_name):
+        self.__name = new_name
+These are also called:
+
+getters → to read data.
+
+setters → to write/update data.
+
+🧪 4. Self Parameter in Python
+Every method inside a class must take self as the first parameter.
+
+self refers to the current object’s memory address.
+
+Not a keyword, just a naming convention:
+
+python
+Copy
+Edit
+def show(self):
+    print(self.name)
+🧱 5. Encapsulation Analogy
+Think of a room with a gate:
+
+Room = class
+
+Gate = function
+
+Data inside = private
+
+You decide when to open the gate (call a function) and what to expose.
+
+🔁 6. Example: Creating, Reading, Updating, Deleting (CRUD)
+python
+Copy
+Edit
+class Contact:
+    def setName(self, self_ref, name):
+        self_ref.name = name
+    
+    def getName(self, self_ref):
+        return self_ref.name
+
+    def delName(self, self_ref):
+        del self_ref.name
+💡 7. Use Case: Communication Class
+Imagine a class for messaging tasks:
+
+python
+Copy
+Edit
+class Communication:
+    def email(self): ...
+    def sms(self): ...
+    def whatsapp(self): ...
+Objects like Tom = Communication()
+
+Then Tom.email(), Tom.sms(), etc.
+
+Useful for tasks like: sending messages, calling, managing contacts.
+
+🧠 8. Best Practices in Class Design
+Don’t expose all data by default.
+
+Allow only specific operations by writing custom methods.
+
+Every operation (read, write, delete) should have its own method.
+
+Group related data and functions into classes for better code management.
+
+📌 9. Takeaway Concepts
+Term	Meaning
+Class	Blueprint to organize data and functions
+Object	Instance of a class
+Method	Function defined inside a class
+self	Refers to the object itself
+Encapsulation	Restricting direct access to data
+Getter/Setter	Functions to access/modify private data
+CRUD	Create, Read, Update, Delete – core operations
