@@ -1,0 +1,343 @@
+ AI ML – Day 5 Notes (Function Concept in Programming)
+📌 Card 1: What is a Function?
+A function is a reusable block of code to perform a specific task.
+
+Follows this structure:
+
+Problem Statement → What needs to be done
+
+Algorithm → Step-by-step instructions
+
+Function → Encapsulated implementation of the algorithm
+
+📌 Card 2: Daily Life Example (Tea Making Analogy)
+Problem Statement: Make tea
+
+Algorithm: Steps like boiling milk, adding tea leaves, adding sugar
+
+Function: make_tea() implementing the above steps
+
+You call the function when tea is needed, rather than repeating steps
+
+📌 Card 3: Python Function Syntax
+python
+Copy
+Edit
+def make_tea():
+    print("Boil milk for 15 minutes")
+    print("Add tea leaves")
+    print("Add one spoon of sugar")
+    print("Serve hot tea")
+Use def to define a function.
+
+Python uses indentation, not curly braces {}.
+
+Add a colon : after the function name line.
+
+📌 Card 4: Calling the Function
+python
+Copy
+Edit
+make_tea()
+Executes the defined instructions.
+
+Can be called multiple times without rewriting logic.
+
+📌 Card 5: The Power of Parameters
+Instead of hardcoding values, use parameters to customize behavior.
+
+python
+Copy
+Edit
+def make_tea(total_minutes):
+    print(f"Boil milk for {total_minutes} minutes")
+    print("Add tea leaves")
+    print("Add one spoon of sugar")
+Call with argument:
+
+python
+Copy
+Edit
+make_tea(5)
+📌 Card 6: Multiple Parameters
+python
+Copy
+Edit
+def make_tea(total_minutes, number_of_spoon):
+    print(f"Boil milk for {total_minutes} minutes")
+    print(f"Add {number_of_spoon} spoon(s) of sugar")
+    print("Add tea leaves")
+Example Call:
+
+python
+Copy
+Edit
+make_tea(10, 2)
+📌 Card 7: Positional vs Named Arguments
+Positional:
+
+python
+Copy
+Edit
+make_tea(10, 2)
+Named:
+
+python
+Copy
+Edit
+make_tea(number_of_spoon=2, total_minutes=10)
+✅ Named arguments improve readability and avoid confusion.
+
+📌 Card 8: Default Parameters
+python
+Copy
+Edit
+def make_tea(total_minutes=10, number_of_spoon=1, location="office"):
+    print(f"Boil milk for {total_minutes} minutes")
+    print(f"Add {number_of_spoon} spoon(s) of sugar")
+    print(f"Deliver tea to {location}")
+Call with defaults:
+
+python
+Copy
+Edit
+make_tea()
+Override selectively:
+
+python
+Copy
+Edit
+make_tea(location="home")
+📌 Card 9: Return Statement in Functions
+If you want the function to return a result, use return.
+
+python
+Copy
+Edit
+def make_tea_return():
+    return "☕ Your tea is ready!"
+
+my_cup = make_tea_return()
+print(my_cup)
+return lets the function send back data to be used elsewhere.
+
+📌 Card 10: Function as Data
+Functions can be stored in variables like data:
+
+python
+Copy
+Edit
+def greet():
+    return "Hello"
+
+x = greet
+print(x())  # Outputs: Hello
+📌 Card 11: Function Signature
+The function signature shows:
+
+Function name
+
+Parameters
+
+Parameter order
+
+Use help(function_name) to view in Python.
+
+📌 Card 12: Naming Best Practices
+Avoid names like x, y, i, j.
+
+Use descriptive names:
+
+number_of_spoons, total_minutes, current_location
+
+Naming styles:
+
+snake_case → total_minutes
+
+camelCase → totalMinutes (common in JavaScript)
+
+📌 Card 13: Single Responsibility Principle (SRP)
+A function should do one thing only.
+
+Don't mix responsibilities:
+
+Avoid one function doing both tea and coffee making.
+
+This aligns with SOLID principles in software design.
+
+📌 Card 14: Abstracting Logic
+Functions help in hiding complexity.
+
+You don’t need to know how it works, only what input to give and what output to expect.
+
+python
+Copy
+Edit
+def make_tea(minutes, spoons, location="office"):
+    # complex steps hidden
+    return f"☕ Tea ready with {spoons} spoon(s) at {location} in {minutes} minutes."
+
+
+   Card 1: Functions as Building Blocks
+Every action in programming should be wrapped in a function.
+
+A function:
+
+Takes input (optional)
+
+Processes something (algorithm/logic)
+
+Optionally gives output using return
+
+📌 Card 2: Return in Functions
+Use return when you want to send back the result.
+
+You can store this result in a variable:
+
+python
+Copy
+Edit
+result = download_data()
+📌 Card 3: Importance of Function Reusability
+Reuse functions for tasks like:
+
+Sending email
+
+Posting on Instagram
+
+Sending SMS
+
+Functions simplify code structure and prepare you for building APIs later.
+
+📌 Card 4: API & Functions
+APIs (like WhatsApp API, Zoom API) are based on functions.
+
+To build your own API, you must first know how to write modular functions.
+
+📌 Card 5: Organizing Tasks Using Menu
+python
+Copy
+Edit
+def email_task(): ...
+def sms_task(): ...
+def instagram_post(): ...
+
+choice = int(input("Enter 1 for Email, 2 for SMS, 3 for Insta: "))
+if choice == 1:
+    email_task()
+📌 Card 6: Arrays – Storing Multiple Items
+When you want to store:
+
+multiple names
+
+mobile numbers
+
+IDs
+
+Use arrays (in Python: list, tuple, dictionary)
+
+📌 Card 7: Creating a Python List
+python
+Copy
+Edit
+names = ["Rahul", "Kris", "Tom", "Maya"]
+Each item is comma-separated
+
+Indexed from 0, 1, 2...
+
+📌 Card 8: Tuple vs List
+Feature	Tuple	List
+Syntax	("Tom", "1234")	["Tom", "1234"]
+Mutable	❌ No	✅ Yes
+Use	Fixed Data	Editable Data
+
+📌 Card 9: Indexing and Slicing in Lists
+python
+Copy
+Edit
+names[0]        # Access first name
+names[1:3]      # Slice from index 1 to 2
+names[:3]       # First three
+names[2:]       # From index 2 to end
+Python uses 0-based indexing
+
+Slicing excludes the end index
+
+📌 Card 10: 2D Lists – Tabular Data
+To store more than one column (e.g., name, phone, city)
+
+python
+Copy
+Edit
+db = [
+    ["Tom", "1111", "Nice"],
+    ["Rahul", "2222", "Delhi"],
+    ["Kris", "3333", "Goa"]
+]
+📌 Card 11: Accessing Records in 2D Lists
+python
+Copy
+Edit
+db[0]         # Entire first row
+db[0][0]      # 'Tom'
+db[1][1]      # '2222'
+This structure is called a nested list or a 2D array
+
+📌 Card 12: Length and Records
+python
+Copy
+Edit
+len(db)       # Number of records (rows)
+Helps validate how many user entries exist in your dataset.
+
+📌 Card 13: Data vs Information
+Data = raw values (names, numbers)
+
+Information = relationships & structure between them
+
+Data becomes useful only when structured properly.
+
+📌 Card 14: Python Slice for Columns
+Print entire second column:
+
+python
+Copy
+Edit
+for row in db:
+    print(row[1])
+Print rows 1 to 3:
+
+python
+Copy
+Edit
+print(db[1:4])
+📌 Card 15: Data Structures Overview
+Types in Python:
+
+List
+
+Tuple
+
+Dictionary
+
+Advanced: Tree, Graph, Stack, Queue (in DS/Algo)
+
+📌 Card 16: Visualizing 2D List
+Think of the 2D list as:
+
+A table
+
+Rows = records
+
+Columns = fields
+
+Example structure:
+
+python
+Copy
+Edit
+[
+  ["Name", "Mobile", "Remark"],
+  ["Tom", "1234", "Good"],
+  ["Rahul", "5678", "Nice"]
+]
