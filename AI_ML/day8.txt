@@ -1,0 +1,292 @@
+ AI ML – Day 8 Lecture Notes (Obsidian Canvas Format)
+📌 Card 1: Real-World Dataset Example
+Dataset contains employee experience and salary.
+
+Used by a company to make HR decisions.
+
+Problem: Predict salary based on experience (regression problem).
+
+📌 Card 2: Importance of Problem Statement
+ML starts with a clear use case.
+
+Without a defined problem, model creation is not possible.
+
+E.g.:
+
+Input: Years of experience
+
+Output: Salary
+
+Goal: Predict future salary for a new employee
+
+📌 Card 3: Why Data is Essential
+A model requires past data to learn patterns.
+
+No data → no learning → no prediction.
+
+Dataset must include:
+
+Input features (e.g., experience)
+
+Target labels (e.g., salary)
+
+📌 Card 4: Identifying X and Y
+Y: What we want to predict (target) → Salary
+
+X: Feature(s) influencing Y → Experience
+
+Example:
+
+python
+Copy
+Edit
+X = dataset["Experience"]
+y = dataset["Salary"]
+📌 Card 5: What is Feature Engineering?
+The process of identifying useful input variables (X).
+
+Features may include: skill set, experience, leaves taken, knowledge level, etc.
+
+Not all features are always relevant.
+
+📌 Card 6: Example Use Case
+HR wants a Salary Prediction App.
+
+Problem: For a new candidate with 5.2 years of experience, what salary should be offered?
+
+Solution: Use past data to predict a fair salary → regression problem.
+
+📌 Card 7: Regression vs Classification
+Regression: Output is a number (e.g., salary)
+
+Classification: Output is a label (e.g., pass/fail)
+
+This example is a simple linear regression with one feature (experience).
+
+📌 Card 8: Why Linear Regression?
+When Y depends on a single continuous X, it's a linear regression problem.
+
+Model equation:
+
+ini
+Copy
+Edit
+y = w * x + b
+w is the weight (coefficient)
+
+b is the bias/intercept
+
+📌 Card 9: Introduction to Pandas and DataFrames
+python
+Copy
+Edit
+import pandas as pd
+df = pd.read_csv("Salary_Data.csv")
+DataFrame = table with rows and columns
+
+Like Excel in Python
+
+df.head() shows first 5 rows
+
+📌 Card 10: Understanding Data Types
+Pandas stores tabular data as a DataFrame
+
+Each column is a Series
+
+Columns can be:
+
+Strings
+
+Integers
+
+Floats
+
+📌 Card 11: Feature & Target Separation
+python
+Copy
+Edit
+X = df[["Experience"]]   # 2D input (important!)
+y = df["Salary"]         # 1D target
+📌 Card 12: Reshape with .values.reshape(-1,1)
+Machine Learning models need X as 2D.
+
+If X is 1D:
+
+python
+Copy
+Edit
+X = X.values.reshape(-1, 1)
+📌 Card 13: Why Reshape is Required?
+ML models don't accept 1D X.
+
+.reshape(-1, 1) converts from 1D to 2D.
+
+-1 auto-calculates rows
+
+1 → one column
+
+📌 Card 14: Loading Linear Regression Model
+python
+Copy
+Edit
+from sklearn.linear_model import LinearRegression
+model = LinearRegression()
+model.fit(X, y)
+Trains model with given X and y
+
+Internally calculates optimal weight (w) and bias (b)
+
+📌 Card 15: Making Predictions
+python
+Copy
+Edit
+experience = [[6.9]]  # must be 2D
+predicted_salary = model.predict(experience)
+print(predicted_salary)
+Predicts salary for 6.9 years of experience.
+
+📌 Card 16: Real-World Insight
+Real data is asymmetric, unlike textbook examples.
+
+Patterns are not perfectly linear.
+
+Still, the model captures trends and helps in negotiation & decisions.
+
+📌 Card 17: Coefficient and Bias
+python
+Copy
+Edit
+print(model.coef_)   # Weight (W)
+print(model.intercept_)  # Bias (b)
+w and b help construct the model equation:
+
+ini
+Copy
+Edit
+salary = w * experience + b
+📌 Card 18: Model = Pattern Recognition
+Model = Pattern + Weight + Bias
+
+Training a model = finding the best values of W and b to fit data.
+
+This is done using techniques like Gradient Descent.
+
+ Topic: Understanding Weights, Bias, Accuracy, and Prediction Logic in ML (especially Linear Regression)
+📌 1. Weight (W) Cannot Be Universal
+In real-world data, you can't find a single W (weight) that satisfies all records exactly.
+
+A weight might work well for one data point but fail for others.
+
+Conclusion: One-size-fits-all W does not exist in noisy or inconsistent data.
+
+📌 2. Real-World Data ≠ Perfect Patterns
+Inconsistent patterns: Day 1 vs Day 3 might differ due to changes (like mood, behavior, environment).
+
+Therefore, model predictions won't be 100% accurate in the real world.
+
+📌 3. Accuracy in Real ML
+100% accuracy is rarely achievable due to variability and hidden factors.
+
+Even top models like ChatGPT, LLMs, etc., typically operate around 90–95% accuracy.
+
+Error is inevitable — the aim is to minimize loss, not eliminate it.
+
+📌 4. Loss in Prediction
+Loss = Difference between actual value and predicted value.
+
+The lower the loss, the higher the model accuracy.
+
+To adjust for inconsistency, ML adds an error term (ε) to the equation:
+
+ini
+Copy
+Edit
+Y = W * X + ε
+📌 5. Error is Expected
+Prediction = Approximation, not certainty.
+
+ML models strive to approximate real-world outcomes as closely as possible.
+
+📌 6. Bias (b) in Linear Regression
+Real-life example: A fresher (0 experience) may still be offered ₹5,000.
+
+This fixed offer despite 0 experience is called bias.
+
+Therefore, actual model formula is:
+
+ini
+Copy
+Edit
+Y = W * X + b
+b ensures that the model starts from a realistic base, not zero.
+
+📌 7. Model Goal = Predicting Trends
+ML isn't about being exact, it’s about predicting patterns.
+
+Example:
+
+1.0 year → ₹30,000
+
+1.1 year → ₹36,000 (approx)
+
+Prediction logic is based on past data trend, not actual certainty.
+
+📌 8. Model Training = Finding W and b
+ML training aims to find values of W and b that best fit the data.
+
+This is done using algorithms like Gradient Descent or internal fitting.
+
+📌 9. Fitting the Line
+Model builds a best-fit line that:
+
+Minimizes loss
+
+Covers maximum data points with least error
+
+Even if one or two points deviate slightly, overall the line is considered “fit.”
+
+📌 10. Linear Regression Equation in Practice
+Given:
+
+python
+Copy
+Edit
+W = 9449
+b = 25792
+Model:
+
+python
+Copy
+Edit
+Salary = 9449 * Experience + 25792
+Prediction:
+
+python
+Copy
+Edit
+If experience = 1.1
+Then salary ≈ 9449 * 1.1 + 25792 = 36,385
+📌 11. Why Bias Matters
+Without b, prediction for X=0 (no experience) = 0, which is not realistic.
+
+Bias shifts the prediction line vertically to match real-world expectations.
+
+📌 12. Concept Summary
+X: Feature (e.g., experience)
+
+Y: Target (e.g., salary)
+
+W: Coefficient (weight learned by model)
+
+b: Bias/intercept
+
+ε: Error term (noise/unpredictability)
+
+📌 13. Final Formula
+Y = W * X + b (+ ε)
+
+W and b are learned during training (model.fit()).
+
+Predictions are made using the above formula.
+
+ML doesn’t eliminate error; it approximates outcomes based on trends.
