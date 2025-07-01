@@ -1,0 +1,56 @@
+Cloud & DevOps Tools
+Tool	Purpose
+eksctl	CLI tool for creating and managing EKS (Kubernetes on AWS) clusters.
+kubectl	CLI to manage Kubernetes clusters.
+minikube	Run Kubernetes locally for learning/testing.
+helm.exe	Kubernetes package manager – deploy applications easily.
+AWSCLIV2.msi	AWS Command Line Interface – control AWS services via terminal.
+
+💻 Virtualization & Linux
+Tool	Purpose
+VirtualBox-7.1.8...Win.exe	Install VirtualBox (virtual machine manager).
+VBoxGuestAdditions.iso	Add features like clipboard sharing to VirtualBox VMs.
+Oracle_VirtualBox_Extension_Pack...vbox-extpack	Adds USB support, RDP, and more to VirtualBox.
+rhel-9.6-x86_64-dvd.iso	Red Hat Enterprise Linux – ISO to install RHEL in VirtualBox.
+rhel-9.6.vdi	Pre-installed virtual disk of RHEL.
+
+🧰 Development Tools
+Tool	Purpose
+Visual Studio Code.lnk	Shortcut to launch VS Code (IDE).
+Node.js.lnk	Shortcut to Node.js environment.
+flutter_windows_3.32.0-stable.zip	Flutter SDK for cross-platform mobile/web apps.
+android-studio-2024...exe	Android Studio IDE – likely for Flutter mobile apps.
+Postman-win64-Setup.exe	API testing tool – very important for DevOps workflows.
+WinSCP-6.5.1-Setup.exe	Transfer files to/from remote servers (SSH, SCP, SFTP).
+Wireshark-4.4.6...exe	Network packet analyzer – used for debugging networks.
+
+🛠️ Support Tools
+Tool	Purpose
+Git-2.49.0...exe	Version control – essential for any DevOps work.
+7z2409-x64.exe	7-Zip – used to extract files.
+VC_redist.x86/.x64.exe	Required runtime libraries for some apps to run.
+
+🍃 MongoDB Stack
+Tool	Purpose
+mongodb-atlas-cli...msi	CLI tool to interact with MongoDB Atlas cloud DB.
+mongodb-compass...exe	GUI for MongoDB – visualize and query your data.
+mongodb-windows...signed.msi	Installer for MongoDB on Windows (self-hosted).
+
+📄 Others
+File	Purpose
+requirements.txt	Python dependency list (usually for setting up apps).
+
+✅ Suggested First Steps:
+Install VirtualBox and run RHEL using .vdi or install via .iso.
+
+Learn basic Linux commands.
+
+Setup AWS CLI, eksctl, kubectl, and minikube.
+
+Practice creating a local Kubernetes cluster.
+
+Use VS Code, Git, and Postman in small projects.
+
+Understand how to deploy to Kubernetes via Helm.
+
+Explore how MongoDB Atlas is integrated with cloud apps.
