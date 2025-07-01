@@ -1,1 +1,113 @@
+JavaScript Front-End Core Concepts (Lecture Summary)
+🖥️ JavaScript in the Browser
+To interact with a web browser, JavaScript is the primary language.
 
+HTML structures the page, but real behavior is controlled using JavaScript.
+
+JavaScript can create logic, handle events, and manipulate page content dynamically.
+
+📄 Basic JavaScript Setup
+HTML + <script> tag is used to embed JS.
+
+Code execution begins as soon as the browser loads the HTML.
+
+For controlled execution, code is wrapped in functions.
+
+⚙️ Functions in JavaScript
+A function is a block of code executed only when called.
+
+Syntax:
+
+js
+Copy
+Edit
+function exampleFunction() {
+  // code to run
+}
+Call a function by using its name followed by ().
+
+👆 Event Handling
+Browsers can detect user actions:
+
+click, dblclick, mouseover, keypress, etc.
+
+Event listeners bind these actions to functions.
+
+Common attribute: onclick="functionName()"
+
+🔘 Interactivity via HTML Elements
+Elements like <button>, <div>, <p> can be made interactive.
+
+Example:
+
+html
+Copy
+Edit
+<button onclick="sendMail()">Send Mail</button>
+This triggers a function defined in JavaScript.
+
+🔍 DOM Manipulation
+JavaScript can access and modify HTML content.
+
+Each element can be given a unique id:
+
+html
+Copy
+Edit
+<div id="d1">Original Text</div>
+Access it using:
+
+js
+Copy
+Edit
+document.getElementById("d1").innerHTML = "New Text";
+Use .innerHTML to get or set content.
+
+🧪 Reading and Writing Text
+Two ways to display or fetch text in HTML:
+
+Directly in the body (e.g., <div> content)
+
+Inside form elements (<input>, <textarea>)
+
+Use .value for form fields, .innerHTML for other elements.
+
+🚀 Tasks Given in Lecture (Suggested Practice)
+Create a mail sending function triggered via a button.
+
+Click a photo using the webcam and save it.
+
+Send the clicked photo via email.
+
+Record a short video and email it.
+
+Send a WhatsApp message through UI interaction.
+
+Display user GPS location on Google Maps.
+
+Show route guidance using Google Maps.
+
+List grocery stores within 5–100km on a map.
+
+Retrieve latest Gmail mails and display them.
+
+Post to Instagram, Facebook, or Twitter directly from the webpage.
+
+🔗 DOM Addressing & Targeting
+Every HTML element to be controlled should have a unique ID.
+
+Use document.getElementById("id") to interact.
+
+Store the reference in a variable to reuse:
+
+js
+Copy
+Edit
+let x = document.getElementById("d1");
+alert(x.innerHTML);
+🧠 Key JavaScript Terms
+innerHTML: Used to read or write content of an HTML tag.
+
+.value: Used for reading from input boxes.
+
+document: A special JS object that gives access to the entire page structure.
