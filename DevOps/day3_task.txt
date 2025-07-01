@@ -1,0 +1,56 @@
+General Docker Practice Tasks
+Install Docker (especially on Linux).
+
+Launch a CentOS container using Docker.
+
+Execute basic Linux commands inside the container (touch, cat, etc.).
+
+Create a file inside the container using CLI tools (e.g., vi, nano).
+
+Write and run a simple Python script inside the container.
+
+Install missing packages inside the container using yum install.
+
+Example: yum install python3, yum install net-tools (for ifconfig).
+
+Use Ctrl + P + Q to exit container without shutting it down.
+
+Use docker ps, docker stop, docker start, docker rm, etc.
+
+Re-enter containers using docker attach after starting them.
+
+Practice forcefully removing all containers (with caution):
+
+bash
+Copy
+Edit
+docker rm -f $(docker ps -aq)
+🧠 Programming Task (Inside Docker Containers)
+For All Students:
+Practice Python programming inside the container.
+
+Use Linux command-line editors (like vi) to write and run Python files.
+
+🤖 Machine Learning Students’ Tasks
+Launch Docker container (CentOS or any base image).
+
+Install Python + ML libraries (like numpy, pandas, scikit-learn) using pip.
+
+Write and run a Linear Regression model inside the container.
+
+Generate predictions using that model.
+
+🌐 Flask Developers’ Tasks
+Launch a Docker container.
+
+Install Flask via pip.
+
+Create and launch a Flask API inside the container.
+
+🔁 CI/CD Understanding Task (Preview Exercise)
+After every test or app run, destroy the previous container.
+
+Launch a new clean container, set it up, and retest the app.
+
+Practice environment recreation—this is preparation for CI/CD pipelines.
+
