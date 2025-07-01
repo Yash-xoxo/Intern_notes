@@ -1,0 +1,322 @@
+DevOps Day 4: Full Lecture Notes – Dockerfile, Custom Images & Automation
+🧱 What Is a Dockerfile?
+A Dockerfile is a script used to automate the creation of custom Docker images.
+
+It eliminates manual steps by codifying them into build instructions.
+
+Dockerfile is not written in Python or Bash, but in its own syntax/language.
+
+The process defined in a Dockerfile includes:
+
+Selecting a base image.
+
+Installing packages (like Python).
+
+Copying your application code.
+
+Running necessary commands to prepare the environment.
+
+🔁 Manual vs Dockerfile Approach
+Manual Image Creation:
+Launch a base OS using Docker (e.g., CentOS).
+
+Install dependencies (e.g., python3, pip).
+
+Copy application files from the host to the container.
+
+Run the application inside the container.
+
+Issues with Manual Method:
+Repetitive, error-prone.
+
+Can't be reused easily.
+
+Slower and lacks scalability.
+
+Solution:
+Use a Dockerfile to automate this entire setup.
+
+Build once, use many times.
+
+🧩 Steps to Run Any Application in Docker
+Launch a base OS (container) — use an image like ubuntu:latest or centos:8.
+
+Install dependencies (e.g., python3, flask, etc.).
+
+Copy your program to the container (from host).
+
+Run your program using the necessary runtime (e.g., python3 app.py).
+
+💡 These four steps are repeated for any app deployment.
+
+🛠️ Key Dockerfile Instructions
+Keyword	Purpose
+FROM	Specifies the base image
+RUN	Executes commands during image build
+COPY	Copies files from host to container
+CMD or ENTRYPOINT	Defines default command on container run
+
+✍️ Simple Dockerfile Example
+Dockerfile
+Copy
+Edit
+FROM ubuntu:latest
+RUN apt update && apt install -y python3
+COPY app.py /app/app.py
+CMD ["python3", "/app/app.py"]
+⚙️ Building and Using the Image
+Build the Image
+
+bash
+Copy
+Edit
+docker build -t my-custom-image .
+Run a Container from the Image
+
+bash
+Copy
+Edit
+docker run my-custom-image
+🧠 No need to type all commands again — just edit the Dockerfile and rebuild.
+
+🚫 Avoid Human Interaction in Commands
+Commands in Dockerfile must be non-interactive (no keyboard input).
+
+Example: Use -y with yum or apt:
+
+bash
+Copy
+Edit
+RUN yum install -y python3
+⚡ Automated Runtime Use Case Example
+Run a container for a task (e.g., date, backup, download, or run script) and shut it down afterward.
+
+bash
+Copy
+Edit
+docker run my-custom-image date
+Launches container.
+
+Runs date command.
+
+Shuts down automatically.
+
+✅ Used for:
+
+Short-lived tasks (test, data fetch, backup).
+
+Serverless-like behavior.
+
+🧱 Docker Image Layers
+A Docker image contains:
+
+Base OS (e.g., Ubuntu).
+
+Installed packages.
+
+Your application code.
+
+Instructions to execute your app.
+
+📦 You can now launch as many containers from this single image as needed.
+
+✅ Best Practice for App Deployment
+Use 1 container = 1 responsibility (single app/service).
+
+Prevents risks like:
+
+One compromised app affecting another.
+
+Conflicts in system resources.
+
+🧪 Testing Strategy Using Docker
+Always test in a fresh container.
+
+Clean environment ensures:
+
+No leftover configs or caches.
+
+Real deployment-like conditions.
+
+🔄 Dockerfile Advantages
+Repeatable.
+
+Shareable.
+
+Version-controllable.
+
+Perfect for DevOps pipelines (CI/CD).
+
+Allows quick rollback if something breaks.
+
+📌 Summary
+Dockerfile is a declarative way to build images.
+
+Manual steps (install, copy, run) → are now scripted.
+
+Non-interactive builds are essential.
+
+Build once → run many times.
+
+Perfect for scalable and predictable deployments.
+
+  DevOps Day 4 (Updated): Full Notes + Commands Reference
+🧱 Dockerfile and Custom Images (Recap)
+Use a Dockerfile to automate app setup:
+
+Define base OS, install packages, copy code, and run commands.
+
+Replace manual repetition with consistent, reusable image builds.
+
+🧪 4 Steps to Run Any App in Docker
+Launch the container with a base image.
+
+Install dependencies like Python.
+
+Copy your app files into the container.
+
+Run the app using python3 app.py.
+
+🔧 🧰 Commands & Concepts Taught in DevOps Day 4
+Command / Concept	Purpose / Explanation
+docker cp code.py os1/	📦 Copies code.py file into running container named os1.
+docker run -it centos:8 date	🕓 Launches CentOS 8 container, runs date command, exits after completion. Used for quick one-shot jobs.
+docker build -t myimage:v1 .	🛠 Builds a Docker image named myimage with version v1 from the Dockerfile in current directory.
+launch > run > exit	🔁 Concept: A container is launched, it runs a task, and exits automatically (used in real-world automation/testing).
+RUN yum install -y python3	📥 Non-interactive install command inside Dockerfile (no human input).
+FROM ubuntu:latest	🧱 Specifies base image inside Dockerfile.
+COPY app.py /app/app.py	📂 Copies your app into the image during build.
+CMD ["python3", "/app/app.py"]	▶️ Final command to run inside the container on launch.
+
+💡 Use Case: Auto-Run + Auto-Exit Containers
+bash
+Copy
+Edit
+docker run -it centos:8 date
+Launches → runs date → exits.
+
+Useful for:
+
+Testing.
+
+One-time backup.
+
+Cronjob-like automation.
+
+✅ Practice Recommendation
+Use the docker cp, docker run, and docker build commands repeatedly with small Python/Flask apps to master the flow.
+
+Container Lifecycle and Automation
+After the app has successfully run, the container is shut down automatically.
+
+If a container is built with a program inside:
+
+As long as the program runs, the container stays alive.
+
+Once the program finishes → the container exits.
+
+⚙️ Automating Container Execution
+Instead of launching a container and then running the app manually:
+
+Combine everything into a single automated execution.
+
+Example:
+
+bash
+Copy
+Edit
+docker run myimage
+This launches the container and runs the predefined command (like python3 app.py).
+
+You don’t need to type commands every time. All instructions are embedded into the image using Dockerfile keywords like RUN, CMD, etc.
+
+📂 Versioning Your Images
+If your code or dependencies change, create a new version of the image.
+
+Use semantic tagging:
+
+bash
+Copy
+Edit
+docker build -t myapp:v1 .
+docker build -t myapp:v2 .
+Helps distinguish between iterations without overwriting old versions.
+
+📦 Dockerfile Recap: Purpose and Power
+The Dockerfile defines the full environment setup in code.
+
+Contains everything needed to:
+
+Launch the OS.
+
+Install Python and libraries.
+
+Copy and run the app.
+
+✅ Example Components:
+FROM centos:8
+
+RUN yum install -y python3
+
+COPY app.py /app/app.py
+
+CMD ["python3", "/app/app.py"]
+
+🛠️ CMD vs RUN in Dockerfile
+RUN Keyword	CMD Keyword
+Executes at build time	Executes at container runtime
+Used for setup tasks (e.g., install Python)	Used to run default app (e.g., python app.py)
+Saves the result into the image	Does not alter the image content
+
+🔁 Analogy: RUN is like installing software, CMD is like launching the app.
+
+🧠 Dockerfile Build vs Execution
+When you build an image:
+
+Commands in RUN are executed and their effect is saved in the image.
+
+When you run a container:
+
+Commands in CMD are executed in real time.
+
+🧱 Understanding the Disk Analogy
+A Docker image is like your system's hard disk:
+
+Has installed apps, code, libraries—but not running yet.
+
+When you run a container from that image:
+
+It's like booting up a system.
+
+Apps start executing based on CMD.
+
+🧪 Use Cases of CMD Keyword
+Want your container to:
+
+Run a Python/Java/ML script on launch?
+
+Start a database server or web server?
+
+Use CMD to define the default program that should start automatically.
+
+🧰 Final Practical Flow Recap
+Write a Dockerfile with all setup steps (FROM, RUN, COPY, CMD).
+
+Build the image:
+
+bash
+Copy
+Edit
+docker build -t mycustomimage:v1 .
+Run the image:
+
+bash
+Copy
+Edit
+docker run mycustomimage:v1
+This launches the container.
+
+The container automatically executes the command in CMD.
+
+When the command finishes, the container exits.
+
