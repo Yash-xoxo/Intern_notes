@@ -1,0 +1,285 @@
+DevOps Day 3: Complete Lecture Notes
+🧠 Core Philosophy of DevOps
+Main Objective: Save Time
+
+Time saved = Faster time-to-market = Higher innovation = Higher profits.
+
+Automation is the key to reducing manual effort and ensuring repeatability.
+
+🐳 Docker: Virtual OS Environment in DevOps
+✅ Why Docker?
+Can launch multiple OSes (containers) quickly and efficiently.
+
+Saves hardware resources compared to traditional virtualization.
+
+Mostly used on Linux in real-world scenarios.
+
+📦 Docker Image and Container Basics
+You need an image to launch a container (example: CentOS 8).
+
+A container is a lightweight, standalone OS based on that image.
+
+Commands:
+docker run -it <image> → Launch a new OS/container.
+
+docker ps → Show running containers.
+
+docker ps -a → Show all containers (including stopped).
+
+docker stop <id> → Stop a container.
+
+docker start <id> → Start a stopped container.
+
+docker rm <id> → Remove a container.
+
+🧠 Important Concepts
+Base OS (Host OS) → e.g., Red Hat (where Docker runs).
+
+Container OS → Launched by Docker using an image.
+
+exit → Exits the container and shuts it down.
+
+Ctrl + P + Q → Exits the container without shutting it down.
+
+🛠 Tasks Practiced
+Launch CentOS container.
+
+Practice Linux commands inside the container.
+
+Create a file using touch filename.
+
+Run Python code after installing Python manually.
+
+Understand how data persists inside containers.
+
+Use docker attach <id> to enter a running container.
+
+Install packages inside container using yum install.
+
+⚙️ Package Management in Docker Containers
+If a command is missing (like python3, ifconfig), install it:
+
+Use yum install <package> for CentOS-based containers.
+
+Reason: Docker image creators decide what comes pre-installed.
+
+💡 Image vs Container Logic
+Whatever is present in the image will appear in the container.
+
+Images are like templates; containers are instances.
+
+Example: CentOS image may or may not have Python installed.
+
+You must install and configure what your app needs.
+
+💾 Persistence & Data in Containers
+Data created in a container doesn’t vanish unless the container is removed.
+
+Content persists across restarts (docker stop, docker start).
+
+⚠️ Dangerous but Useful Command
+bash
+Copy
+Edit
+docker rm -f $(docker ps -aq)
+Removes all containers (running and stopped).
+
+⚠️ Use with caution, especially in enterprise settings.
+
+🐍 Python Programming Inside Containers
+Installed Python 3 inside CentOS container.
+
+Wrote a simple Python file using vi.
+
+Ran the file using python3 file.py.
+
+🧪 Software Deployment Logic
+✅ What is Needed to Run an App?
+Operating System (container)
+
+Programming Language Runtime (e.g., Python)
+
+Required Libraries (e.g., NumPy, Flask)
+
+📂 Developer Handoff Flow (CI/CD Preview)
+Developers write code and hand it off.
+
+Ops team needs the correct environment and dependencies.
+
+Repeated testing causes failures if the environment isn’t clean.
+
+🔁 Recommended Flow:
+Delete previous environment.
+
+Launch a fresh OS/container.
+
+Set up required software.
+
+Run and test the application.
+
+💻 Practice Tasks Given
+For Machine Learning Students:
+Launch Docker container.
+
+Create and run a Linear Regression model using Python.
+
+Use pip install to install required ML libraries.
+
+For Flask Developers:
+Launch Docker container.
+
+Create and host a Flask API inside the container.
+
+🔍 Debugging and Environment Cleanup
+Restart stopped containers using partial container ID (at least 4 characters).
+
+Use docker history or docker images to trace what has been used.
+
+Use yum list installed to verify software inside the container.
+
+📌 Key Learnings & Takeaways
+Docker images define what a container will have.
+
+You can customize any container by installing required packages.
+
+CLI-based environment (no GUI) is the standard in enterprise Linux.
+
+Containers are powerful for isolation, testing, and deployment.
+
+
+
+DevOps Day 3 (Remaining Part): Notes on Testing, Custom Images & Automation
+🧪 Testing Workflow and Environment Setup
+Always delete old environments before testing.
+
+Old config may interfere with testing.
+
+Start fresh: launch a new OS container and reconfigure it.
+
+Testing team flow:
+
+Launch new OS.
+
+Setup app requirements (Python, libraries).
+
+Run & test the app.
+
+If the app fails → report to developers → developers fix → retest in new container.
+
+🔁 Every test cycle must start with a fresh environment to avoid cache or setup leftovers.
+
+⏳ Testing Challenges Without Custom Image
+For every test:
+
+OS setup (1 second with Docker).
+
+App & dependencies setup (can take minutes to hours).
+
+If testing 100 times/day:
+
+App setup is repeated 100 times → waste of time.
+
+Slows down feedback loop and productivity.
+
+🧱 Docker Solution: Custom Image Creation
+✅ Problem: Repeated setup of app dependencies.
+
+✅ Solution: Create a custom Docker image that:
+
+Already has OS, Python, required libraries, and app code pre-installed.
+
+Allows launching a ready-to-use environment in < 1 second.
+
+🧩 Custom Image vs Base Image
+Base Image	Custom Image
+Prebuilt (e.g., ubuntu, centos)	Built by you with everything configured
+Needs setup every time	Already includes OS + dependencies + app
+Used as a starting point	Used for production/test automation
+
+📦 How to Create a Custom Image (Using docker commit)
+Launch a base OS (e.g., centos, ubuntu).
+
+Install all dependencies manually (e.g., python3, pip install numpy).
+
+Add your code and project files.
+
+Set up folder structure, test everything inside the container.
+
+Exit and shut down the container.
+
+Run:
+
+bash
+Copy
+Edit
+docker commit <container_name_or_id> myimage:v1
+This creates a new image with everything inside it.
+
+🚀 Advantages of Custom Image
+Instantly launches with all tools pre-configured.
+
+Portable: share and deploy across systems.
+
+Saves testing time dramatically.
+
+Enables CI/CD pipelines and automated deployments.
+
+🔁 Reusable Testing
+Testers can launch containers from the custom image again and again.
+
+No setup delay.
+
+Ensures consistency across all tests.
+
+🧪 Practical Task Summary
+✅ Tasks Given
+Practice using docker commit to create a custom image.
+
+Run the previously taught menu-driven Python project inside Docker.
+
+Run the date command in a container using:
+
+bash
+Copy
+Edit
+docker run -it centos:8 date
+Inside a container, install Docker again (Docker-in-Docker / dind concept).
+
+Try graphical apps inside Docker, e.g.:
+
+Firefox browser
+
+VLC player
+
+Test if sound works by playing audio
+
+Bonus Challenge (for advanced students):
+
+Install and run Apache web server inside a Docker container.
+
+Setup SSH server inside the container.
+
+🧠 Concepts Touched On
+Docker-in-Docker (dind):
+
+Running Docker inside a Docker container.
+
+Useful for CI pipelines and nested virtualization.
+
+Accessing Host Hardware:
+
+Share sound card with container.
+
+Test speaker/mic access from within a container.
+
+Graphical User Interface in Docker:
+
+Yes, GUI apps like Firefox and VLC can run if configured properly.
+
+⚠️ Final Advice from Instructor
+Many examples were shown not as direct tasks, but as awareness.
+
+Explore, test, and validate everything hands-on.
+
+Custom image building is a core DevOps skill and will continue into next sessions.
+
