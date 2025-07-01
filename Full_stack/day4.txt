@@ -1,0 +1,123 @@
+AI/ML Day 4 - JavaScript Concepts & Examples
+🧠 1. Function Definition and Calling
+Basic JavaScript function creation and invocation:
+
+js
+Copy
+Edit
+function lw() {
+  let x = 5;
+}
+function email() {
+  console.log(x);
+}
+lw();
+email(); // Will cause an error because `x` is not in scope
+Scope Warning: x is declared inside lw() and not accessible in email().
+
+Best Practice: Use let and ensure variable scope is managed properly.
+
+🔹 2. Console Logging and Document Writing
+js
+Copy
+Edit
+function lw1() {
+  let x = 5;
+  console.log(x);
+}
+lw1();
+document.write("<h1> hhhhhhh </h1>");
+console.log() prints to the browser console (dev tools).
+
+document.write() writes directly to the HTML page (not recommended in production).
+
+🌐 3. Conditional Redirection using confirm
+js
+Copy
+Edit
+function lwa() {
+  let s = confirm("You are going to Google");
+  if (s) {
+    document.location = "https://www.google.com/";
+  }
+}
+confirm() displays an OK/Cancel box.
+
+Based on user response (true/false), conditional logic runs.
+
+🔄 4. Counter with setInterval
+js
+Copy
+Edit
+let i = 1;
+function lw() {
+  document.getElementById("d1").innerHTML = i;
+  i++;
+}
+Repeated counter increment shown in a <div>.
+
+HTML Structure:
+html
+Copy
+Edit
+<div id="d1">Linux World</div>
+<button onclick="setInterval(lw)">Click me</button>
+⏱️ 5. Controlled Interval with setInterval() and clearInterval()
+js
+Copy
+Edit
+let i = 1;
+function lw() {
+  document.getElementById("d1").innerHTML = i;
+  i++;
+}
+HTML Structure:
+html
+Copy
+Edit
+<div id="d1">Linux World</div>
+<button onclick="t = setInterval(lw, 1000)">Start</button>
+<button onclick="clearInterval(t)">Stop</button>
+setInterval() runs a function repeatedly every 1000ms (1 sec).
+
+clearInterval() stops the interval.
+
+⏳ 6. Using setTimeout() with alert()
+js
+Copy
+Edit
+setTimeout(() => {
+  alert(document.cookie);
+}, 5000);
+Shows cookie data after 5 seconds.
+
+Used for delayed actions.
+
+✨ 7. Simulating a Blink Effect
+js
+Copy
+Edit
+function lwblink() {
+  document.getElementById("d2").innerHTML = "";
+}
+HTML Structure:
+html
+Copy
+Edit
+<div id="d2">VD</div>
+<button onclick="lwblink()">Blink Start</button>
+On button click, the content inside #d2 vanishes (simulating blink).
+
+You can enhance this using setInterval() for real blinking.
+
+📝 Summary of Concepts Covered:
+Concept	Description
+function	Defines reusable blocks of code
+let	Declares block-scoped variables
+console.log()	Logs output in console
+document.write()	Writes directly to the page
+setInterval()	Runs function repeatedly on a timer
+clearInterval()	Stops interval execution
+setTimeout()	Runs a function after a delay
+alert() / confirm()	Popup dialogs for user interaction
+document.getElementById()	DOM manipulation
