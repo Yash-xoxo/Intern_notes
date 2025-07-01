@@ -1,0 +1,104 @@
+Machine Learning Lecture Summary
+  
+1. Understanding the World as Data
+Every event in life is an instance; everything experienced becomes data.
+
+Human intelligence improves through experience, which is gathered via learning.
+
+Learning is deeply influenced by your environment, content consumed (e.g., YouTube, conversations), and people around you.
+
+2. Core ML Problem Types
+Machine Learning problems primarily fall into two categories:
+
+Classification – Predicting a category/label (e.g., yes/no, pass/fail).
+
+Regression – Predicting a continuous value (e.g., marks, salary).
+
+3. Start with the Problem Statement
+Any ML journey must begin by clearly defining:
+
+The problem statement (e.g., "Will I pass the test?")
+
+The target variable (e.g., marks)
+
+The features (e.g., study hours, past knowledge)
+
+4. Target and Features
+The target (a.k.a. output) is what we want to predict → usually denoted by Y.
+
+The features (a.k.a. input variables) are the factors that influence the target → denoted by X.
+
+A good ML model must identify:
+
+All possible features
+
+Their correlation or weight (coefficient) toward the target.
+
+5. Importance of Feature Identification
+Real-world targets (like marks, job offers, health outcomes) are rarely dependent on a single feature.
+
+Requires Domain Expertise to:
+
+Understand what truly influences the target.
+
+Avoid misleading features (e.g., name or age may not affect marks).
+
+This step is called Feature Selection and Engineering.
+
+6. Modeling and Accuracy
+Model-building is not enough; the real goal is accuracy.
+
+Accuracy depends on:
+
+Correct problem framing
+
+Proper feature inclusion
+
+Effective data representation
+
+7. Correlation vs Causation
+Just because a feature seems related doesn’t mean it causes the outcome.
+
+ML models often mislead if correlation is mistaken for causation.
+
+8. Psychological & Real-World Analogy
+Just like in psychology, where anxiety or depression has many causes (genetic, situational, emotional), an ML target depends on multiple latent factors.
+
+Identifying dominant contributing features allows for preventive predictions (e.g., detecting cancer risk early, academic performance, job success).
+
+9. Proactive Learning Models
+Future-focused models aim to predict and prevent undesirable outcomes.
+
+Examples:
+
+Predicting cancer before it occurs based on lifestyle + genetics.
+
+Predicting academic failure based on prior effort, mindset, and resources.
+
+10. Feature Weighting & Coefficients
+Each feature has a weight or coefficient denoting its contribution.
+
+Higher the weight → higher the feature's importance.
+
+Example:
+
+Smoking might contribute 90% to lung cancer → weight = 0.9.
+
+11. Feature Elimination
+Not all features improve the model.
+
+Model can automatically eliminate irrelevant features via regularization or manual logic.
+
+12. Final Insight
+Without identifying the right features, ML models are useless, even if technically correct.
+
+The success of any ML solution depends on:
+
+Problem clarity
+
+Feature understanding
+
+Domain expertise
+
+This is the essence of AI Modeling: predicting the future by understanding the past.
+
