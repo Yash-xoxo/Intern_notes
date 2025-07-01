@@ -1,0 +1,147 @@
+ DevOps Philosophy: Mindset Over Technology
+DevOps is not just a toolset; it's a mindset where Development and Operations teams work collaboratively.
+
+Its essence lies in rapid execution, time optimization, and automating repetitive tasks.
+
+The goal is to reduce Time To Market (TTM)—i.e., the time taken to bring an idea into production.
+
+A DevOps-oriented company:
+
+Saves operational time.
+
+Becomes a pioneer in execution.
+
+Leads the market by moving faster than competitors.
+
+⚙️ Automation & Its Necessity
+Manual processes are:
+
+Error-prone.
+
+Time-consuming.
+
+Computers and scripts (e.g., using Python) are:
+
+Fast.
+
+Error-free.
+
+Repetitive without fatigue.
+
+Python can automate:
+
+File creation.
+
+Directory structuring.
+
+Command execution.
+
+Automation is the key to DevOps—do it once manually, then script it forever.
+
+🚀 Core DevOps Objective: Speed & Optimization
+The DevOps umbrella includes:
+
+Tools like Docker, Python, and other automation systems.
+
+Methodologies that reduce overhead and execution time.
+
+Terms like fast, optimized, rapid, agile, and automated directly reflect the DevOps mindset.
+
+🐳 Docker: The Backbone of Lightweight Virtualization
+Understanding Docker Layers
+Docker Engine/Service:
+
+Core daemon that enables containerization.
+
+Runs on an OS (called the Docker Host).
+
+Docker Host:
+
+Any OS (Linux, Windows, macOS) that runs the Docker Engine.
+
+Hosts the containers.
+
+Container:
+
+A lightweight, standalone OS environment.
+
+Can be launched in < 1 second.
+
+Has its own IP address, resources (CPU, RAM), and Container ID.
+
+Container vs Host OS
+You run docker run from the host to spawn a new OS (container).
+
+Each container is isolated:
+
+Separate network card.
+
+Unique hardware address.
+
+Independent filesystem.
+
+Example: Running multiple Ubuntu containers from a single Red Hat Docker Host.
+
+Why Docker is Fast
+It shares the host kernel, avoiding the overhead of full virtualization.
+
+This enables rapid OS-level virtualization and better hardware utilization.
+
+You can run multiple isolated environments on the same hardware.
+
+🛠️ Docker CLI Essentials
+docker ps → Shows running containers.
+
+docker ps -a → Shows all containers (running + stopped).
+
+docker run → Launches a new container.
+
+Containers have:
+
+Auto-generated or user-defined names.
+
+Container IDs for internal identification.
+
+Managing Containers
+Start: docker start <name|ID>
+
+Stop: docker stop <name|ID>
+
+Enter into a running container: docker exec -it <name|ID> bash
+
+Shutdown options:
+
+From inside the container (exit).
+
+From the host using Docker commands.
+
+🌐 Networking Between Containers
+Each container has its own IP and MAC.
+
+Containers can be pinged for connectivity testing.
+
+Multiple OS simulations (e.g., web server, DB server, client) can be done on a single laptop using containers.
+
+📦 Images & Docker Hub
+Containers are created from images.
+
+Images can be:
+
+Pulled from Docker Hub.
+
+Custom-built (will be covered in later sessions).
+
+Images serve as bootable templates for OS environments.
+
+You can upload your images to Docker Hub.
+
+🧠 Summary of DevOps Day 2 Key Takeaways
+DevOps is about automation, collaboration, and speed.
+
+Use Python to automate system tasks.
+
+Use Docker to simulate multiple OS instances efficiently.
+
+Docker enables rapid testing, deployment, and resource optimization.
+
+Mastering Docker commands and concepts is fundamental for becoming DevOps proficient.
