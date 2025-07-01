@@ -1,0 +1,380 @@
+DevOps Spoken Lecture (Part 1): Full English Notes
+🐳 Docker API Automation with Flask
+If you know Flask:
+
+Create Flask APIs to interact with Docker.
+
+Example:
+
+One API to launch a container.
+
+One to start an existing container.
+
+One to stop it.
+
+Connect these APIs to a frontend:
+
+Using JavaScript buttons, the frontend can control Docker containers.
+
+This becomes a self-managed cloud platform.
+
+You essentially build your own "Container-as-a-Service (CaaS)" model like AWS or GCP.
+
+🌐 Build Your Own Cloud Stack (Conceptually)
+By combining:
+
+Linux
+
+Docker
+
+Flask (Backend)
+
+JavaScript (Frontend)
+
+APIs
+
+You can offer services like:
+
+Container-as-a-Service (CaaS)
+
+AI-as-a-Service
+
+Database-as-a-Service (DBaaS)
+
+Web Server-as-a-Service
+
+📦 Docker Images and Docker Hub
+Docker images are the base to launch containers.
+
+You can:
+
+Use existing images from Docker Hub.
+
+Or create your own (using commit or Dockerfile).
+
+Common Image Use Cases:
+Web servers (Apache, Nginx)
+
+Databases (MySQL, MongoDB, Redis)
+
+ML tools (TensorFlow, PyTorch)
+
+🔍 Searching and Pulling Docker Images
+Visit hub.docker.com
+
+Search for official or community images.
+
+Download with:
+
+bash
+Copy
+Edit
+docker pull <image_name>:<tag>
+🧪 Launching and Debugging Containers
+To launch a container:
+
+bash
+Copy
+Edit
+docker run -it <image_name>
+If the container exits immediately, it might be:
+
+Due to a missing required environment variable.
+
+A command in the image failing silently.
+
+⚙️ Environment Variables in Docker
+Can be set at container launch using:
+
+bash
+Copy
+Edit
+docker run -e VARIABLE_NAME=value image_name
+Example Use Case: MySQL
+Some images require you to set passwords via environment variables:
+
+bash
+Copy
+Edit
+docker run -e MYSQL_ROOT_PASSWORD=RedHat mysql:latest
+Without setting the required variable → the container fails.
+
+🧠 Understanding Shell and Variables
+The Linux shell allows:
+
+Running commands
+
+Writing shell scripts
+
+Defining environment variables (X=10)
+
+These variables are temporary (live only during the session).
+
+Docker containers don't inherit host environment variables unless passed explicitly.
+
+⚙️ Automating Variable Setup
+Set environment variables automatically during container launch:
+
+bash
+Copy
+Edit
+docker run -e VAR_NAME=value image
+🛠️ Attaching to Containers
+Attach to a running container using:
+
+bash
+Copy
+Edit
+docker attach <container_id_or_name>
+Note: You can’t always enter it if the container uses CMD or ENTRYPOINT that takes over stdin.
+
+🚀 Background Containers (Detached Mode)
+Use -d to run containers in the background:
+
+bash
+Copy
+Edit
+docker run -d image_name
+This prevents the terminal from being blocked.
+
+🧞 Daemon/Detached Mode
+"Daemonized" containers:
+
+Run in the background.
+
+Common for long-running services (databases, servers).
+
+📄 Docker Image Documentation
+Every well-maintained image has a README on Docker Hub:
+
+Describes how to use the image.
+
+Lists required environment variables.
+
+Describes supported commands and configurations.
+
+📦 Final Example: MySQL Image with Full Setup
+bash
+Copy
+Edit
+docker run -d \
+  --name mydb1 \
+  -e MYSQL_ROOT_PASSWORD=RedHat \
+  -e MYSQL_DATABASE=mydata \
+  -e MYSQL_USER=myuser \
+  -e MYSQL_PASSWORD=RedHat \
+  mysql:latest
+Sets up:
+
+MySQL root password
+
+A database named mydata
+
+A user myuser with a password
+
+Runs in detached mode, ideal for background services.
+
+🧩 CMD vs ENTRYPOINT (Preview)
+Both define what command runs when a container starts.
+
+CMD: Specifies default command.
+
+ENTRYPOINT: Forces specific command, even if other commands are passed.
+
+Full difference and use cases will be covered in future sessions.
+
+ Dockerfile Keywords Review
+Inspect a Docker image to check which Dockerfile keywords were used:
+
+RUN
+
+COPY
+
+CMD
+
+ENTRYPOINT
+
+Some images only use ENTRYPOINT, which overrides interactive entry (like docker attach).
+
+If ENTRYPOINT is used, use:
+
+bash
+Copy
+Edit
+docker exec -it <container_name> bash
+🐚 Linux Shell Basics Inside Containers
+Shell is the program that interprets your commands (commonly bash).
+
+You can:
+
+Declare variables
+
+Use loops
+
+Run scripts
+
+Inside any container, this acts like a full terminal (or CLI interface).
+
+🧰 Docker exec vs attach
+Command	Purpose
+docker attach	Enters a container's main process (if CMD allows)
+docker exec -it <container> bash	Starts a new shell session, works even if ENTRYPOINT blocks attach
+
+Prefer exec for flexibility, especially when container is running a background service.
+
+🧠 Environment Variables Recap
+To list environment variables inside a container:
+
+bash
+Copy
+Edit
+env
+These are useful for:
+
+Database passwords
+
+App configuration
+
+System paths
+
+🗃️ Working with MySQL Inside Docker
+Use a MySQL Docker image:
+
+bash
+Copy
+Edit
+docker run -d --name db1 \
+  -e MYSQL_ROOT_PASSWORD=RedHat \
+  -e MYSQL_DATABASE=school \
+  mysql:latest
+Enter the container:
+
+bash
+Copy
+Edit
+docker exec -it db1 bash
+Connect to MySQL:
+
+bash
+Copy
+Edit
+mysql -u root -p
+# Enter password: RedHat
+Run SQL commands:
+
+Show databases:
+
+sql
+Copy
+Edit
+SHOW DATABASES;
+Use a database:
+
+sql
+Copy
+Edit
+USE school;
+Create a table:
+
+sql
+Copy
+Edit
+CREATE TABLE students (
+  id INT,
+  name VARCHAR(20),
+  city VARCHAR(30)
+);
+Insert records:
+
+sql
+Copy
+Edit
+INSERT INTO students VALUES (1, 'Yash', 'Jaipur');
+Query table:
+
+sql
+Copy
+Edit
+SELECT * FROM students;
+🔐 Importance of Environment Variables in Images
+Some official images (like MySQL) require environment variables to work.
+
+These variables (e.g. MYSQL_ROOT_PASSWORD) are hardcoded into the image logic.
+
+Without setting them → image will fail to run.
+
+🧾 Docker Image Documentation
+Docker Hub pages often include:
+
+Required environment variables
+
+Usage examples
+
+Version details
+
+Always refer to these before using unfamiliar images.
+
+⚠️ Detaching and Daemonizing Containers
+Run long-running services in detached mode:
+
+bash
+Copy
+Edit
+docker run -d <image>
+Background containers won't block the terminal.
+
+📌 Background-running programs are often called “daemons” (e.g. MySQL, MongoDB, Nginx).
+
+🧨 Data Persistence Warning
+If you exit a container → it stays alive.
+
+If you rm (remove) a container → all data inside it is lost.
+
+Program ≠ important; data is.
+
+💾 Best Practice: Persistent Data
+If you want to retain data after container deletion:
+
+Use Docker volumes (covered in next class).
+
+Example:
+
+bash
+Copy
+Edit
+docker run -v /data:/var/lib/mysql ...
+🧪 Preview: Next Real-World Project
+Upcoming project: Multi-tier Application with:
+
+Backend (Flask)
+
+Frontend (React or HTML/JS)
+
+Database (MySQL)
+
+Persistent Volumes
+
+Will simulate a real DevOps deployment.
+
+🔁 CI/CD Preview – Jenkins Incoming
+From the next session:
+
+Start learning Jenkins, a key tool in the CI/CD pipeline.
+
+Will integrate Docker + Git + Jenkins for full automation.
+
+Suggested: Brush up on git and GitHub.
+
+✅ Summary of Key Tasks Practiced
+Launch MySQL with Docker and set environment variables.
+
+Enter container and execute SQL commands.
+
+Learn difference between attach vs exec.
+
+Understand environment variables and why they’re required.
+
+Handle foreground vs background containers (daemonized mode).
+
+Preview of persistent volumes and real-world Docker setup.
+
