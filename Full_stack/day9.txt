@@ -1,0 +1,307 @@
+Full Stack Development – Day 9 Notes (Part 2)
+🌐 1. Hosting a Web Page on Apache Server
+Setup involves configuring Apache on a Linux system.
+
+HTML files like front.html are placed in the Apache public folder (e.g., /var/www/html/).
+
+Any device connected to the same hotspot can access the web page using:
+
+arduino
+Copy code
+http://<server-ip>/front.html
+🧱 2. Client–Server Interaction via HTTP
+The Linux system acts as a server, and a Windows system (or phone) acts as the client.
+
+The client accesses the HTML file using a browser.
+
+When the browser loads the page, it fetches all static files (HTML/CSS/JS) from the server.
+
+🧪 3. DOM Manipulation via JS
+On clicking a button:
+
+js
+Copy code
+function example() {
+  document.getElementById("d1").innerHTML = "New content";
+}
+This changes the content inside the <div id="d1">.
+
+📤 4. Fetching Data from Backend File (like db.txt)
+Goal: On button click, fetch content from db.txt and display it on the page.
+
+Use JavaScript + AJAX (XMLHttpRequest) to make this happen.
+
+🔁 5. AJAX Logic Flow
+js
+Copy code
+let xhr = new XMLHttpRequest();
+xhr.open("GET", "db.txt", true); // true = asynchronous
+xhr.onload = function() {
+  document.getElementById("d1").innerHTML = xhr.responseText;
+}
+xhr.send();
+XMLHttpRequest: Object for making HTTP requests.
+
+onload: Executes after the full response is received.
+
+true parameter means the request is asynchronous.
+
+📈 6. Asynchronous vs Synchronous
+Synchronous Request	Asynchronous Request
+Waits for response before moving on	Doesn’t wait — runs in background
+Blocks other tasks	Non-blocking
+Default for many simple scripts	Preferred for modern apps
+
+AJAX by default is async (true), but you can also make sync requests (false) — though not recommended.
+
+📦 7. Real-World Analogy (Swiggy/Order Tracking)
+You order food from Swiggy:
+
+State 0 → Order placed
+
+State 1 → Reached server
+
+State 2 → Being prepared
+
+State 3 → Ready
+
+State 4 → Delivered
+
+In AJAX, these states correspond to:
+
+readyState changes (0 to 4)
+
+Each change triggers the readystatechange event
+
+🧠 8. readyState and onreadystatechange
+js
+Copy code
+xhr.onreadystatechange = function() {
+  console.log(xhr.readyState);
+}
+Tracks the progress of the request.
+
+Values of xhr.readyState:
+
+Value	Meaning
+0	Request not initialized
+1	Server connection established
+2	Request received
+3	Processing
+4	Request finished and response ready
+
+🧪 9. Triggering Actions on State Change
+You can assign a function to onreadystatechange.
+
+This function is called automatically as state changes.
+
+Example:
+
+js
+Copy code
+xhr.onreadystatechange = function() {
+  if (xhr.readyState === 4 && xhr.status === 200) {
+    document.getElementById("d1").innerHTML = xhr.responseText;
+  }
+};
+🔄 10. Auto Fetch with setInterval()
+To simulate live data, use:
+
+js
+Copy code
+setInterval(fetchData, 5000); // Every 5 seconds
+This avoids clicking the button repeatedly.
+
+Ideal for live score updates, weather feeds, notifications, etc.
+
+📲 11. Single Page Application (SPA) Concept
+A single HTML page dynamically loads content without full page reloads.
+
+AJAX allows the same page to:
+
+Fetch different data from different URLs
+
+Update parts of the page instantly
+
+Examples:
+
+Google Maps
+
+Gmail
+
+Twitter feed updates
+
+🧩 12. JavaScript Function Nesting & Scope
+You can define functions inside other functions:
+
+Inner functions have local scope and can’t be accessed from outside.
+
+Useful for modular code, especially in AJAX.
+
+🔄 13. Multiple Parallel Requests
+You can make multiple asynchronous requests at the same time.
+
+JS engine will handle them independently — this is called:
+
+Asynchronous Execution (not true parallelism)
+
+⚠️ 14. Cache & Browser Issues
+Sometimes the browser uses a cached version of db.txt.
+
+Use tricks to avoid this:
+
+js
+Copy code
+xhr.open("GET", "db.txt?" + new Date().getTime(), true);
+This ensures a fresh request is made each time.
+
+📝 15. Summary of AJAX States
+readyState	Description
+0	UNSENT – request not initialized
+1	OPENED – connection established
+2	HEADERS_RECEIVED – request received
+3	LOADING – processing
+4	DONE – response received
+
+Let me know if you want these converted into:
+
+🎨 Obsidian Canvas node layout
+
+📝 PDF or printable version
+
+🧪 A task list based on this lecture for practice
+
+Happy to help with next steps!
+
+
+📚 Full Stack Development – Day 9 (Part 3) Notes
+⚙️ 1. Understanding readyState with Real-World Analogy
+AJAX has internal state changes from 0 to 4.
+
+Each state is tied to a backend response stage:
+
+readyState	Meaning (Analogy: Food Delivery)
+0	Request not initialized
+1	Server connection established (Order placed)
+2	Request received by server (Confirmed)
+3	Processing (Food being prepared)
+4	Response ready (Food delivered)
+
+You should generally act only when readyState == 4 (i.e., when data is ready).
+
+🧪 2. Use Case: Show Data Only When Ready
+Use condition:
+
+js
+Copy code
+if (xhr.readyState == 4 && xhr.status == 200) {
+  document.getElementById("d1").innerHTML = xhr.responseText;
+}
+Only load content into <div> when it's fully available.
+
+Prevents errors and ensures a smooth user experience.
+
+🕒 3. Demonstrating Delay Using PHP Backend
+A backend script (e.g., db.php) was written to simulate a 10-second delay:
+
+php
+Copy code
+<?php
+sleep(10);
+echo "Response after delay";
+?>
+Purpose:
+
+Mimics real-life backend latency (e.g., searching, processing).
+
+Shows how AJAX doesn’t hang the page while waiting.
+
+🌐 4. AJAX Keeps UI Responsive
+Even if backend takes 10 seconds, AJAX keeps:
+
+Animations running (like <marquee>)
+
+Buttons clickable
+
+No browser freezing
+
+❌ 5. What Happens Without AJAX (Synchronous Call)?
+Page hangs or freezes during delay.
+
+Nothing responds until backend returns.
+
+Marquee stops, buttons don't work — bad UX.
+
+✅ 6. AJAX + Async = Best Practice
+Always set xhr.open(..., true) (async mode).
+
+Use event-driven logic to respond after readyState === 4.
+
+🧠 7. Summary of Code Pattern
+js
+Copy code
+function fetchData() {
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", "db.php", true); // async
+  xhr.onreadystatechange = function () {
+    if (xhr.readyState == 4 && xhr.status == 200) {
+      document.getElementById("d1").innerHTML = xhr.responseText;
+    }
+  };
+  xhr.send();
+}
+💬 8. Async vs Sync in Real-World Terms
+Async AJAX Call	Sync Call
+Background task	Blocks browser
+UI remains active	UI freezes
+Feels modern & dynamic	Feels slow & unresponsive
+
+💡 9. Frontend-to-Backend Flow with Multiple Buttons
+Each button triggers a specific function via its own API URL.
+
+Use structure:
+
+Button → JS Function → Specific API endpoint (e.g., /start, /stop, /status)
+
+🧰 10. Backend Integration Options
+Frontend (JS) can integrate with backends made in:
+
+PHP
+
+Python (Flask)
+
+Node.js
+
+Java
+
+Backend serves:
+
+Text
+
+JSON
+
+HTML
+
+Dynamic content
+
+🔗 11. Connecting APIs to Frontend Events
+One button → one JS function → one URL/API
+
+Helps you modularize features like:
+
+Start server
+
+Send email
+
+Get user data
+
+Trigger hardware (e.g., GPIO)
+
+📌 12. Core Takeaways from Day 9 Part 3
+Topic	Summary
+readyState logic	Always wait for readyState == 4
+Async AJAX	Prevents freezing, keeps UX smooth
+PHP delay demo	Simulates real-world backend latency
+API integration	Use separate URLs per task/function
+Platform flexibility	JS frontend can call PHP, Python, Node backends
+
