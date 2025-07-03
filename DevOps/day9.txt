@@ -1,0 +1,185 @@
+DevOps Day 9 – Full Notes
+🧠 Why Automation?
+Manual steps are:
+
+Time-consuming.
+
+Prone to errors.
+
+Examples:
+
+Installing Apache or Docker involves multiple steps (install, configure, start service).
+
+Same logic applies to configuring databases, downloading datasets, launching containers, etc.
+
+✅ DevOps Principle: If you're doing a task more than once → it should be automated.
+
+⚙️ Automation Tools: Enter Jenkins
+Jenkins is an open-source automation server.
+
+Capable of automating:
+
+Software builds.
+
+Test execution.
+
+Deployment.
+
+Any repetitive DevOps workflow.
+
+Used heavily in ML, web, container, and CI/CD pipelines.
+
+🔄 Manual vs Jenkins Automation
+Manual Approach	Jenkins Approach
+Run each step manually	Define steps once as a Jenkins job
+Repeat errors likely	Repeatable and error-free
+No visibility/history	Keeps logs, statuses, user tracking
+Works only when system is up	Jenkins UI works even when user logs out
+
+💡 Jenkins Use Cases
+Data scientists: Automate data download, cleaning, feature engineering, model training.
+
+DevOps engineers: Automate Docker builds, pushes, container launches, updates.
+
+🌐 Jenkins Basics
+Jenkins is written in Java.
+
+Works on:
+
+Linux
+
+Windows
+
+macOS
+
+UI available via web browser (Web UI).
+
+Typically installed on a Linux server.
+
+🖥️ Jenkins UI and Dashboard
+Accessible via IP + port (default 8080):
+
+cpp
+Copy code
+http://<ip-address>:8080
+User logs in and creates Jobs (also called Items).
+
+🧪 Jenkins Job Structure
+Create a new job (New Item)
+
+Give it a name
+
+Choose “Freestyle project”
+
+Go to Build Step
+
+Select “Execute Shell”
+
+Add your Linux command(s) (e.g., date, python3, docker build)
+
+▶️ Executing Jenkins Job
+Run the job:
+
+From dashboard (blue play button)
+
+Or from inside the job configuration
+
+Jenkins will:
+
+Execute the command.
+
+Show console output.
+
+Save build history.
+
+🧾 Jenkins Features
+Keeps history of all builds.
+
+Tracks:
+
+Who ran the job.
+
+When.
+
+Output logs.
+
+Status (Success/Failure).
+
+Supports parameterized builds, conditional flows, and notifications.
+
+🔁 Modify & Re-run Jenkins Jobs
+Jobs can be:
+
+Edited any time.
+
+Re-run with updated logic.
+
+You can run a failed job again.
+
+View previous outputs easily.
+
+⚙️ Jenkins with Other Tools
+Jenkins integrates with:
+
+Docker (image build/push/run)
+
+Git (pull code)
+
+MySQL (DB setup)
+
+Shell scripts
+
+Start small → scale to multi-step pipelines.
+
+📦 Jenkins Job Examples
+Job	Task
+Job 1	Print date
+Job 2	Run Docker build
+Job 3	Compile Java or C
+Job 4	Launch MySQL container
+Job 5	Execute ML pipeline
+
+🔐 Jenkins Notes
+Requires Java to be installed first.
+
+If Java is missing → Jenkins won’t start.
+
+Jenkins is open-source and free.
+
+Has won multiple DevOps industry awards.
+
+📈 CI/CD Pipeline Introduction
+Jenkins is the foundation of CI/CD pipelines.
+
+CI – Continuous Integration
+
+CD – Continuous Delivery/Deployment
+
+Jenkins helps in:
+
+Automatically testing new code.
+
+Automatically deploying to production/testing.
+
+Reducing manual developer + ops work.
+
+🔧 Suggested Setup & Requirements
+Know how to use:
+
+Linux commands (especially sudo)
+
+Git and GitHub (will be used soon)
+
+Make sure Java is installed before Jenkins.
+
+Prepare for integrating Docker, Git, Jenkins in future sessions.
+
+📍 Summary of Day 9 Tasks
+Task	Description
+✅ Install Jenkins	Ensure Java is installed, then install Jenkins
+✅ Create Jenkins job	Freestyle → Execute Shell
+✅ Automate a command	Example: print date, run Docker command
+✅ View job history	Observe logs, success/failure
+✅ Modify and rerun jobs	Practice editing job logic
+✅ Get comfortable with Jenkins UI	Use browser to create/manage jobs
+
