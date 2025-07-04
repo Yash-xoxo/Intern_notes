@@ -1,0 +1,371 @@
+Full Stack Development – Day 10 Notes (Part 1)
+🎨 Focus: CSS – Styling, Layouts, and Page Structuring
+🧠 1. What is CSS?
+CSS (Cascading Style Sheets) is used to control look and feel of web pages.
+
+HTML defines structure; CSS defines presentation (color, font, layout).
+
+Example: Curved buttons, styled avatars, colorful sections, etc.
+
+🧱 2. Structure of a Basic CSS File
+HTML page named myweb.css.html
+
+Apply style via <style> tag inside <head> or via external stylesheet.
+
+🧾 3. CSS Syntax and Property Basics
+css
+Copy
+Edit
+selector {
+  property: value;
+}
+Example:
+
+css
+Copy
+Edit
+div {
+  color: red;
+  border: 5px solid black;
+}
+color = property, red = value
+
+🎯 4. CSS Selectors
+Selector Type	Syntax	Description
+Element	div	Targets all <div> tags
+ID	#d1	Targets element with ID d1
+Class	.box	Targets all elements with class box
+
+🖌️ 5. Styling Examples
+css
+Copy
+Edit
+#d1 {
+  color: red;
+  border: 5px dotted aqua;
+  background-color: yellow;
+  font-size: 32px;
+}
+🧩 6. ID vs Class
+ID (#id)	Class (.class)
+Unique per element	Can be reused
+Used for JS and CSS	CSS only
+Select with #	Select with .
+
+🧰 7. Reusing Styles
+Multiple elements can share the same class for consistent design.
+
+Example:
+
+html
+Copy
+Edit
+<div class="menu">Home</div>
+<div class="menu">Support</div>
+📐 8. Width, Height, and Layout Planning
+Use width, height, and % or px to define box sizes:
+
+css
+Copy
+Edit
+.menu {
+  width: 100px;
+  height: 50px;
+}
+Helps in building UI wireframes:
+
+Header bar
+
+Chat box
+
+Company logo section
+
+Footer
+
+🧭 9. Planning a Website Layout
+Divide UI into divisions (divs) for:
+
+Navigation
+
+Header
+
+Body/content
+
+Footer
+
+Assign each a unique class for styling.
+
+🧪 10. Display Properties in CSS
+Value	Meaning
+block	Takes full width; starts on new line
+inline	Flows with text; width/height can’t be set
+none	Hides the element
+
+Example:
+
+css
+Copy
+Edit
+a {
+  display: block;
+  width: 100px;
+}
+🔁 11. Alignments and Decorations
+Text alignment:
+
+css
+Copy
+Edit
+text-align: center;
+Text decorations:
+
+css
+Copy
+Edit
+text-decoration: underline;
+text-decoration: line-through;
+text-decoration: none;
+🧱 12. Overflow Handling
+Prevents layout from breaking when content exceeds space:
+
+css
+Copy
+Edit
+overflow: auto;
+🧠 13. CSS Libraries Mentioned
+Tailwind CSS
+
+Bootstrap
+
+These offer pre-made classes for faster UI design.
+
+🎨 14. Styling Anchor (<a>) Tags
+You can style links like boxes using class:
+
+html
+Copy
+Edit
+<a href="#" class="menu">Home</a>
+Then apply style using:
+
+css
+Copy
+Edit
+.menu {
+  background-color: gray;
+  padding: 10px;
+  display: inline-block;
+}
+🧠 15. Notes on CSS Flexibility
+You can make the UI highly customizable:
+
+Font sizes
+
+Colors
+
+Backgrounds
+
+Borders
+
+Spacing
+
+CSS has hundreds of properties, use only what you need.
+
+🧾 16. Final Notes
+CSS helps simulate “makeup” for your HTML.
+
+It enhances user experience, improves layout, and adds visual polish.
+
+Use planning, layout sketching, and organized class usage to build scalable UIs.
+
+
+
+
+css
+Copy
+Edit
+text-decoration: none;
+Change text color:
+
+css
+Copy
+Edit
+color: white;
+Background colors and borders can be styled using:
+
+css
+Copy
+Edit
+background-color: blue;
+border: 5px solid white;
+🧾 2. Rounded Corners & Padding
+Use border-radius to make corners round:
+
+css
+Copy
+Edit
+border-radius: 10px;
+Apply spacing inside boxes:
+
+css
+Copy
+Edit
+padding: 10px;
+Different paddings for each side:
+
+css
+Copy
+Edit
+padding: 10px 0 0 10px; /* top right bottom left */
+🎨 3. Using Classes for Reusability
+Apply class to multiple elements:
+
+html
+Copy
+Edit
+<div class="menu">Home</div>
+Class styling in CSS:
+
+css
+Copy
+Edit
+.menu {
+  background-color: gray;
+  color: white;
+}
+🔀 4. Built-in vs Custom Classes
+Custom classes: You define and apply using class="...".
+
+CSS frameworks (like Bootstrap, Tailwind) provide predefined utility classes (e.g., .text-center, .bg-dark).
+
+🖱️ 5. CSS Pseudo-classes (:hover)
+Change appearance when mouse hovers over an element:
+
+css
+Copy
+Edit
+a:hover {
+  color: pink;
+  width: 110px;
+}
+Can also apply shadow on hover:
+
+css
+Copy
+Edit
+a:hover {
+  box-shadow: 10px 10px 10px blue;
+}
+📦 6. Box Wrapping and Grouping Elements
+Wrap multiple items (e.g., menu buttons) in a single box using a div.
+
+Example:
+
+html
+Copy
+Edit
+<div class="menu-box">
+  <a class="menu">Home</a>
+  <a class="menu">About</a>
+</div>
+Style the whole box:
+
+css
+Copy
+Edit
+.menu-box {
+  border: 2px solid green;
+  width: 150px;
+}
+🔧 7. Inline CSS
+You can also apply CSS directly in HTML using style:
+
+html
+Copy
+Edit
+<div style="border: 2px solid red;">Hello</div>
+📐 8. Positioning Elements Using Coordinates
+Use position: absolute to place items anywhere on the screen:
+
+css
+Copy
+Edit
+.box {
+  position: absolute;
+  top: 100px;
+  left: 50px;
+}
+top, left, right, bottom are based on the screen (X, Y axes).
+
+🧱 9. Overlapping & Layer Control with z-index
+Use z-index to control which element appears on top when overlapping:
+
+css
+Copy
+Edit
+.box {
+  z-index: 1;
+}
+💥 10. Mouseover Visual Effects with JavaScript & CSS
+Combine JavaScript + CSS to make:
+
+Enlarged image on hover
+
+Animated hover transitions
+
+Background color and box-shadow changes
+
+📊 11. Planning UI Elements Visually
+Treat each part of your webpage as a box:
+
+Menu bar
+
+Search bar
+
+Logo
+
+Login button
+
+Footer
+
+Wrap these in separate <div> containers and style/layout them independently.
+
+🧠 12. Z-Axis and Visual Depth
+When elements overlap:
+
+The one with higher z-index is shown on top.
+
+Used in:
+
+Dropdown menus
+
+Modals
+
+Tooltips
+
+✏️ 13. Task Assigned at the End
+Design a sketch (on paper or tool) of your first page layout:
+
+Decide:
+
+Where menu will go
+
+Where logo will appear
+
+Where the login/signup buttons will sit
+
+What font, color scheme, and sizes you want
+
+This sketch becomes your HTML+CSS roadmap.
+
+✅ Summary of Key CSS Topics Covered
+Topic	Example or Usage
+text-decoration	Remove link underline
+border-radius	Rounded corners
+padding	Inner spacing
+:hover	Change style on mouse hover
+box-shadow	Shadow effect
+position: absolute	Place elements freely
+z-index	Stack depth for overlapping
+class	Reusable styles
+style attribute	Inline CSS
